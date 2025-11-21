@@ -10,7 +10,7 @@
     </div>
 
     <!-- Event Grid -->
-    <div class="columns-1 gap-6 sm:columns-2 lg:columns-3 space-y-6">
+    <div class="columns-1 gap-6 sm:columns-2 space-y-6">
       <div 
         v-for="event in visibleEvents" 
         :key="event.id"
@@ -36,7 +36,7 @@
             </span>
             <span>{{ event.date }}</span>
           </div>
-          <h3 class="text-lg font-bold leading-tight drop-shadow-sm">{{ event.title }}</h3>
+          <h3 class="text-lg font-bold leading-tight drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">{{ event.title }}</h3>
           <p class="mt-1 text-xs text-slate-200 line-clamp-1">{{ event.location }}</p>
         </div>
       </div>
@@ -155,11 +155,11 @@ const events = ref<TouhouEvent[]>([
   // 已宣发/定档
   {
     id: 1,
-    title: '12月山高联例会',
-    date: '12月',
+    title: '山东东方高校联合例会01-齐鲁幻聚',
+    date: '2025年12月20日',
     location: '济南',
     status: '筹备中',
-    image: 'https://via.placeholder.com/600x848/f472b6/ffffff?text=Poster+Coming+Soon',
+    image: '/posters/qlhj.jpg',
     description: '山东东方高校联合会12月例会。\n\n群聊：977015593',
     link: 'https://qm.qq.com/q/977015593'
   },

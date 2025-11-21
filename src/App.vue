@@ -66,9 +66,9 @@
             <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
             山高联，复活！
           </p>
-          <h1 class="mt-4 text-3xl font-semibold leading-tight tracking-tight text-slate-900 dark:text-slate-50 md:text-4xl">
+          <h1 class="mt-4 text-5xl font-semibold leading-tight tracking-tight text-slate-900 dark:text-slate-50 md:text-6xl">
             梦入 <span class="text-sky-600 dark:text-sky-400">幻想</span><br>
-            齐聚 <span class="text-sky-600 dark:text-sky-400">齐鲁</span>
+            共聚 <span class="text-sky-600 dark:text-sky-400">齐鲁</span>
           </h1>
           <p class="mt-4 max-w-xl text-sm leading-relaxed text-slate-600 dark:text-slate-300">
             山东东方高校联合会由山东省内多所高校的东方众联合成立，致力于促进各高校间的交流与连接，共同推动东方project在山东高校内的发展与传播。

@@ -17,9 +17,9 @@ interface University {
 const universities: University[] = [
   {
     id: 1,
-    name: '山东大学（测试用）',
-    logo: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=SDU',
-    contact: { qqGroup: '123456789（测试用）', description: '山东大学东方爱好者协会' }
+    name: '山东大学',
+    logo: '/logos/sdu.png',
+    contact: { qqGroup: '186295950', description: '★山东大学♪幻想浮世伊行★' }
   },
   {
     id: 2,
@@ -30,19 +30,19 @@ const universities: University[] = [
   {
     id: 3,
     name: '山东建筑大学',
-    logo: '/logos/sdjzu.jpg',
+    logo: '/logos/sdjzu.png',
     contact: { qqGroup: '579042420', description: '济南山童联合协会' }
   },
   {
     id: 4,
-    name: '青岛大学（测试用）',
-    logo: 'https://via.placeholder.com/150/FFFF00/000000?text=QDU',
-    contact: { qqGroup: '444555666（测试用）' }
+    name: '山东体育学院',
+    logo: '/logos/sdpei.png',
+    contact: { qqGroup: '871721412' }
   },
   {
     id: 5,
     name: '枣庄学院',
-    logo: '/logos/uzz.jpg',
+    logo: '/logos/uzz.png',
     contact: { qqGroup: '852282759' }
   },
   {
@@ -54,20 +54,26 @@ const universities: University[] = [
   {
     id: 7,
     name: '东营科技职业学院',
-    logo: '/logos/dykj.jpg',
+    logo: '/logos/dykj.png',
     contact: { qqGroup: '644182264' }
   },
   {
     id: 8,
     name: '聊城大学',
-    logo: '/logos/lcu.jpg',
+    logo: '/logos/lcu.png',
     contact: { qqGroup: '514756242' }
   },
   {
     id: 9,
     name: '烟台大学',
-    logo: '/logos/ytu.jpg',
+    logo: '/logos/ytu.png',
     contact: { qqGroup: '1007450236' }
+  },
+  {
+    id: 10,
+    name: '齐鲁理工学院',
+    logo: '/logos/qiot.png',
+    contact: { qqGroup: '1011030824' }
   }
 ];
 
@@ -138,7 +144,7 @@ const handleClick = (e: MouseEvent, uni: University) => {
       <h2 class="text-3xl md:text-4xl font-bold text-sky-700 dark:text-sky-400 inline-block">
         高校社群
       </h2>
-      <p class="mt-4 text-slate-500 dark:text-slate-400">点击校徽查看详细联系方式</p>
+      <p class="mt-4 text-slate-500 dark:text-slate-400">目前已提供校徽和群号的社群，若想加入请单击获取详细联系方式</p>
     </div>
     
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-10 px-6 max-w-7xl mx-auto">
