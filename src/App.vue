@@ -5,7 +5,7 @@
     <header class="sticky top-0 z-20 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur transition-colors duration-300">
       <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
         <div class="flex items-center gap-3">
-          <img src="/logos/sdtcsa.png" alt="SDTCSA Logo" class="h-16 w-16 object-contain drop-shadow-md" />
+          <img :src="resolveImage('/logos/sdtcsa.png')" alt="SDTCSA Logo" class="h-16 w-16 object-contain drop-shadow-md" />
           <div>
             <p class="text-base font-bold tracking-wide text-slate-900 dark:text-slate-100">山东东方高校联合会</p>
             <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Shandong Touhou College Students Association</p>
@@ -122,7 +122,7 @@
             }"
           >
             <img 
-              src="/logos/sdtcsa.png" 
+              :src="resolveImage('/logos/sdtcsa.png')" 
               alt="SDTCSA 3D Logo" 
               class="w-full h-full object-contain drop-shadow-2xl"
             />
@@ -226,6 +226,7 @@ import UniversityCommunity from './components/UniversityCommunity.vue';
 import SeasonalEffects from './components/SeasonalEffects.vue';
 import UnderConstruction from './components/UnderConstruction.vue';
 import TouhouEvents from './components/TouhouEvents.vue';
+import { resolveImage } from './utils/image';
 
 const scrollTo = (id: string) => {
   const el = document.getElementById(id)

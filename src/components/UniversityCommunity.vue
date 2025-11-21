@@ -81,7 +81,7 @@ const universities: University[] = [
     name: '中国石油大学（华东）',
     logo: '/logos/UPC.png',
     contact: { qqGroup: '631941461' }
-  }，
+  },
   {
     id: 12,
     name: '枣庄职业学院',
@@ -226,7 +226,7 @@ const handleClick = (e: MouseEvent, uni: University) => {
             <div class="flex justify-between items-start mb-6">
               <div class="flex items-center gap-4">
                  <div class="w-16 h-16 rounded-full border-4 border-white dark:border-slate-800 shadow-lg overflow-hidden bg-white dark:bg-slate-800">
-                    <img :src="selectedUniversity?.logo" class="w-full h-full object-cover" />
+                    <img :src="selectedUniversity ? resolveImage(selectedUniversity.logo) : ''" class="w-full h-full object-cover" />
                  </div>
                  <div>
                     <h3 class="text-2xl font-bold text-slate-900 dark:text-white">{{ selectedUniversity?.name }}</h3>
