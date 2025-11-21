@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { resolveImage } from '@/utils/image';
 
 interface ContactInfo {
   qqGroup?: string;
@@ -167,7 +168,11 @@ const handleClick = (e: MouseEvent, uni: University) => {
                
                <!-- Main Content Layer -->
                <div class="absolute inset-0 rounded-full overflow-hidden border-4 border-slate-200 dark:border-slate-700 group-hover:border-sky-500 dark:group-hover:border-sky-400 transition-colors bg-white dark:bg-slate-800 shadow-inner">
-                   <img :src="uni.logo" :alt="uni.name" class="w-full h-full object-cover scale-95 group-hover:scale-100 transition-transform duration-300" />
+                             <img 
+            :src="resolveImage(uni.logo)" 
+            :alt="uni.name" 
+            class="h-full w-full object-contain p-2 transition-transform duration-500 group-hover:scale-110"
+          />
                </div>
 
                <!-- Dynamic Shine effect -->

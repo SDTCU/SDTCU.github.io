@@ -20,7 +20,7 @@
         <!-- Image Container -->
         <div class="w-full overflow-hidden bg-slate-200 dark:bg-slate-800">
           <img 
-            :src="event.image" 
+            :src="resolveImage(event.image)" 
             :alt="event.title"
             class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
           />
@@ -92,7 +92,7 @@
 
           <!-- Modal Image -->
           <div class="relative aspect-video w-full bg-slate-100 dark:bg-slate-800">
-            <img :src="selectedEvent.image" :alt="selectedEvent.title" class="h-full w-full object-cover" />
+            <img :src="resolveImage(selectedEvent.image)" :alt="selectedEvent.title" class="h-full w-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent"></div>
             <div class="absolute bottom-0 left-0 p-6 text-white">
               <h3 class="text-2xl font-bold">{{ selectedEvent.title }}</h3>
@@ -137,6 +137,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
+import { resolveImage } from '@/utils/image';
 
 interface TouhouEvent {
   id: number;
