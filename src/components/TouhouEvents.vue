@@ -160,7 +160,7 @@ const events = ref<TouhouEvent[]>([
     date: '2025年12月20日',
     location: '济南',
     status: '筹备中',
-    image: '/posters/qlhj.jpg',
+    image: '/posters/qlhj.webp',
     description: '山东东方高校联合会12月例会。\n\n群聊：977015593',
     link: 'https://qm.qq.com/q/977015593'
   },
@@ -170,7 +170,7 @@ const events = ref<TouhouEvent[]>([
     date: '1月27-28日',
     location: '济南',
     status: '筹备中',
-    image: '/posters/byht.jpeg',
+    image: '/posters/byht.webp',
     description: '济南绊月花田岁华逐宴。\n\n群聊：981769085',
     link: 'https://qm.qq.com/q/981769085'
   },
@@ -180,7 +180,7 @@ const events = ref<TouhouEvent[]>([
     date: '2月',
     location: '泰安',
     status: '筹备中',
-    image: '/posters/tathp.jpg',
+    image: '/posters/tathp.webp',
     description: '泰安东方Project Only聚会。\n\n群聊：1057613342',
     link: 'https://qm.qq.com/q/1057613342'
   },
@@ -190,7 +190,7 @@ const events = ref<TouhouEvent[]>([
     date: '2月10-11日',
     location: '聊城东昌府',
     status: '筹备中',
-    image: '/posters/dfsly.jpg',
+    image: '/posters/dfsly.webp',
     description: '东方霜林宴in聊城东昌府。\n\n联系群：184537740',
     link: 'https://qm.qq.com/q/184537740'
   },
