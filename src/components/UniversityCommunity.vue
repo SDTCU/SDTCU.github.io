@@ -66,9 +66,9 @@ const universities: University[] = [
   },
   {
     id: 9,
-    name: '山东石油化工学院',
-    logo: '/logos/sdipct.webp',
-    contact: { qqGroup: '644182264' }
+    name: '山东师范大学',
+    logo: '/logos/sdnu.webp',
+    contact: { qqGroup: '743070412' }
   },
   {
     id: 10,
@@ -82,44 +82,50 @@ const universities: University[] = [
     logo: '/logos/UPC.webp',
     contact: { qqGroup: '631941461' }
   },
-   {
+  {
     id: 12,
+    name: '山东石油化工学院',
+    logo: '/logos/sdipct.webp',
+    contact: { qqGroup: '644182264' }
+  },
+  {
+    id: 13,
     name: '济南大学',
     logo: '/logos/ujn.webp',
     contact: { qqGroup: '856370052' }
   },
   {
-    id: 13,
+    id: 14,
     name: '枣庄学院',
     logo: '/logos/uzz.webp',
     contact: { qqGroup: '852282759' }
   },
   {
-    id: 14,
+    id: 15,
     name: '东营科技职业学院',
     logo: '/logos/dykj.webp',
     contact: { qqGroup: '644182264' }
   },
   {
-    id: 15,
+    id: 16,
     name: '聊城大学',
     logo: '/logos/lcu.webp',
     contact: { qqGroup: '514756242' }
   },
   {
-    id: 16,
+    id: 17,
     name: '烟台大学',
     logo: '/logos/ytu.webp',
     contact: { qqGroup: '1007450236' }
   },
   {
-    id: 17,
+    id: 18,
     name: '齐鲁理工学院',
     logo: '/logos/qiot.webp',
     contact: { qqGroup: '1011030824' }
   },
   {
-    id: 18,
+    id: 19,
     name: '枣庄职业学院',
     logo: '/logos/zvc.webp',
     contact: { qqGroup: '1020621071' }
