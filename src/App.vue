@@ -8,14 +8,14 @@
           <img :src="resolveImage('/logos/sdtcsa.png')" alt="SDTCSA Logo" class="h-16 w-16 object-contain drop-shadow-md" />
           <div>
             <p class="text-base font-bold tracking-wide text-slate-900 dark:text-slate-100">山东东方高校联合会</p>
-            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Shandong Touhou College Students Association</p>
+            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Shandong Touhou College Union</p>
           </div>
         </div>
 
         <nav class="hidden gap-6 text-sm text-slate-600 dark:text-slate-300 md:flex items-center">
           <button class="hover:text-sky-600 dark:hover:text-white transition-colors" @click="scrollTo('hero')">主页</button>
-          <button class="hover:text-sky-600 dark:hover:text-white transition-colors" @click="scrollTo('event')">活动</button>
-          <button class="hover:text-sky-600 dark:hover:text-white transition-colors" @click="scrollTo('college')">高校一览</button>
+          <button class="hover:text-sky-600 dark:hover:text-white transition-colors" @click="scrollTo('event')">活动一栏</button>
+          <button class="hover:text-sky-600 dark:hover:text-white transition-colors" @click="scrollTo('college')">高校社群</button>
           <button class="hover:text-sky-600 dark:hover:text-white transition-colors" @click="scrollTo('joinus')">加入我们</button>
           
           <!-- Season Effect Toggle -->
@@ -163,7 +163,7 @@
       <section id="about" class="space-y-4">
         <h2 class="text-xl font-semibold text-slate-900 dark:text-slate-50">关于我们</h2>
         <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-          山东东方高校联合会（SDTCSA）是一个致力于连接山东省内各高校东方Project爱好者的非营利性学生组织。
+          山东东方高校联合会（SDTCU）是一个致力于连接山东省内各高校东方Project爱好者的非营利性学生组织。
           我们旨在搭建一个开放、友好的交流平台，促进各高校社团之间的资源共享与合作。
         </p>
         <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
@@ -197,16 +197,61 @@
         </div>
       </section>
 
-      <!-- 页面结构展示 / 导航说明 -->
-      <section id="joinus" class="space-y-4">
-        <h2 class="text-xl font-semibold text-slate-900 dark:text-slate-50">加入我们</h2>
-        <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
-          <li>· 官方QQ群:977015593</li>
-          <li>· 合作联系:如有活动联办意向，请入群详询。</li>
-        </ul>
-        <p class="text-xs text-slate-500 dark:text-slate-400">
-          欢迎每一位热爱东方Project的同学加入我们的大家庭！
-        </p>
+      <!-- 加入我们 (Refactored) -->
+      <section 
+        id="joinus" 
+        class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-sky-600 via-purple-600 to-pink-600 bg-[length:400%_400%] animate-gradient-flow p-8 md:p-16 text-center text-white shadow-2xl"
+      >
+        <!-- Decorative Circles (CSS only) -->
+        <div class="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-red-500/40 blur-3xl animate-blob mix-blend-overlay"></div>
+        <div class="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-white/20 blur-3xl animate-blob [animation-delay:2000ms] mix-blend-overlay"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-yellow-400/30 blur-3xl animate-blob [animation-delay:4000ms] -z-10"></div>
+
+        <div class="relative z-10 flex flex-col items-center gap-10">
+          <div class="max-w-2xl">
+            <h2 class="text-3xl font-bold tracking-tight md:text-4xl">加入我们</h2>
+            <p class="mt-4 text-lg text-sky-100">
+              无论你是刚入坑的新人，还是资深的东方众，在这里都能找到志同道合的伙伴。
+            </p>
+          </div>
+
+          <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+             <!-- QR Code Card -->
+             <div class="relative group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-pink-500 to-violet-500 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-200"></div>
+                <div class="relative h-48 w-48 bg-white rounded-xl flex items-center justify-center p-2">
+                   <img :src="resolveImage('/logos/qqgroup.webp')" alt="QQ Group QR" class="w-full h-full object-contain" />
+                </div>
+             </div>
+
+             <!-- Info Card -->
+             <div class="text-left space-y-4">
+                <div class="flex items-center gap-4 p-2 rounded-xl transition-colors hover:bg-white/10 cursor-default">
+                   <div class="p-3 rounded-lg bg-white/10 backdrop-blur-sm shadow-inner">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                   </div>
+                   <div>
+                      <p class="text-sm text-sky-200 font-medium">官方QQ群</p>
+                      <p class="text-2xl font-bold font-mono tracking-wider select-all drop-shadow-sm">977015593</p>
+                   </div>
+                </div>
+                
+                <div class="flex items-center gap-4 p-2 rounded-xl transition-colors hover:bg-white/10 cursor-default">
+                   <div class="p-3 rounded-lg bg-white/10 backdrop-blur-sm shadow-inner">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                   </div>
+                   <div>
+                      <p class="text-sm text-sky-200 font-medium">合作联系</p>
+                      <p class="text-base drop-shadow-sm">如有活动联办意向，请入群详询</p>
+                   </div>
+                </div>
+             </div>
+          </div>
+        </div>
       </section>
     </main>
 

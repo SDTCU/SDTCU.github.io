@@ -162,7 +162,7 @@ const events = ref<TouhouEvent[]>([
     status: '筹备中',
     image: '/posters/qlhj.webp',
     description: '山东东方高校联合会12月例会。\n\n群聊：977015593',
-    link: 'https://qm.qq.com/q/977015593'
+    link: 'https://touhou.market/main/events/320'
   },
   {
     id: 2,

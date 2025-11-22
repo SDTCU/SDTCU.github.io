@@ -1,7 +1,7 @@
 // 图片加载优化工具
 // 使用 jsDelivr CDN 加速 GitHub Pages 上的静态资源
 
-const CDN_PREFIX = 'https://cdn.jsdelivr.net/gh/SDTCSA/SDTCSA.github.io@gh-pages';
+const CDN_PREFIX = 'https://cdn.jsdelivr.net/gh/SDTCU/SDTCU.github.io@gh-pages';
 
 /**
  * 解析图片路径
