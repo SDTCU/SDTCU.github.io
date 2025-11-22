@@ -1,5 +1,5 @@
 # 山东东方高校联合会 (SDTCSA) 官网
-本项目由大部分由Google Gemini 3 Pro构建，省了很多力。
+本项目大部分由Google Gemini 3 Pro构建，省了很多力。
 
 山东东方高校联合会（Shandong Touhou College Student Union）官方网站源代码。
 
