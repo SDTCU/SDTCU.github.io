@@ -272,7 +272,7 @@
           </a>
           
           <a 
-            href="https://github.com/SDTCSA/SDTCSA.github.io" 
+            href="https://github.com/SDTCU/SDTCU.github.io" 
             target="_blank" 
             rel="noopener noreferrer"
             class="group relative flex h-8 w-8 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 transition-all hover:bg-black hover:text-white hover:-translate-y-1"
@@ -291,6 +291,7 @@ import { ref, onMounted, onUnmounted, computed } from 'vue';
 import UniversityCommunity from './components/UniversityCommunity.vue';
 import SeasonalEffects from './components/SeasonalEffects.vue';
 import UnderConstruction from './components/UnderConstruction.vue';
+
 import TouhouEvents from './components/TouhouEvents.vue';
 import { resolveImage } from './utils/image';
 
@@ -303,7 +304,7 @@ const scrollTo = (id: string) => {
 // Season Effect Logic
 const isSeasonEffectActive = ref(true);
 const seasonalEffectsRef = ref<InstanceType<typeof SeasonalEffects> | null>(null);
-const showUnderConstruction = ref(true);
+const showUnderConstruction = ref(false);//施工中弹窗，true为开
 
 const currentSeason = computed(() => {
     return seasonalEffectsRef.value?.currentSeason || 'spring';

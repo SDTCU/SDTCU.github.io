@@ -130,6 +130,12 @@ const universities: University[] = [
     logo: '/logos/zvc.webp',
     contact: { qqGroup: '1020621071' }
   },
+  {
+    id: 20,
+    name: '添加你的学校',
+    logo: '/logos/more.webp',
+    contact: { qqGroup: '977015593', description: '请加入山高联群聊私信管理员添加' }
+  },
 
 ];
 
