@@ -96,9 +96,9 @@ const universities: University[] = [
   },
   {
     id: 14,
-    name: '神秘占位符',
-    logo: '/logos/derakuma.webp',
-    contact: { qqGroup: 'xxxx' ,description:'xxxxx'}
+    name: '哈尔滨工业大学（威海）',
+    logo: '/logos/hitwith.webp',
+    contact: { qqGroup: '196208810' ,description:'梦环翠海　～　哈尔滨工业大学（威海）东方同好会'}
   },
   {
     id: 15,
