@@ -1,0 +1,1 @@
+.animate-spin-slow[data-v-ff7cf293]{animation:spin-ff7cf293 3s linear infinite}@keyframes spin-ff7cf293{0%{transform:rotate(0)}to{transform:rotate(360deg)}}.animate-pulse-slow[data-v-ff7cf293]{animation:pulse 4s cubic-bezier(.4,0,.6,1) infinite}
