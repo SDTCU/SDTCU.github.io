@@ -104,7 +104,7 @@ const universities: University[] = [
     id: 15,
     name: '山东石油化工学院',
     logo: '/logos/sdipct.webp',
-    contact: { qqGroup: '644182264' }
+    contact: { qqGroup: '644182264' ,description:'曾经的石油大学胜利学院，石油大学是我们的亲爹'}
   },
   {
     id: 16,
