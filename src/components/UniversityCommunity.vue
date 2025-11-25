@@ -128,7 +128,7 @@ const universities: University[] = [
     id: 19,
     name: '聊城大学',
     logo: '/logos/lcu.webp',
-    contact: { qqGroup: '514756242' }
+    contact: { qqGroup: '514756242',description:"水城烟波泛古槎，\n光岳楼前绽梦家。\n星曳御柱临幽境，\n月照博丽映京华。" }
   },
   {
     id: 20,
