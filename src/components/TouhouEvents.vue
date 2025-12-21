@@ -162,7 +162,7 @@ const events = ref<TouhouEvent[]>([
     title: '山东东方高校联合例会01-齐鲁幻聚',
     date: '2025年12月20日',
     location: '济南',
-    status: '售票中',
+    status: '已结束',
     image: '/posters/qlhj.webp',
     description: '山东东方高校联合会12月例会。\n\n群聊：977015593',
     link: 'https://touhou.market/main/events/320'

@@ -78,7 +78,7 @@
         <div class="relative z-10">
           <p class="inline-flex items-center gap-1 rounded-full border border-sky-200 dark:border-sky-500/40 bg-sky-50 dark:bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-700 dark:text-sky-300">
             <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
-            山东东方高校联合例会01-齐鲁幻聚即将举办
+            山东东方高校联合例会01-齐鲁幻聚圆满结束！
           </p>
           <h1 class="mt-4 text-5xl font-semibold leading-tight tracking-tight text-slate-900 dark:text-slate-50 md:text-6xl">
             梦入 <span class="text-red-600 dark:text-red-400">幻想</span><br>
@@ -152,7 +152,7 @@
 
           <aside class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm p-4 shadow-xl shadow-slate-200/50 dark:shadow-sky-900/40 transition-colors duration-300">
             <h2 class="text-sm font-semibold text-slate-900 dark:text-slate-100">近期活动预告</h2>
-            <p class="mt-1 text-[11px] text-slate-500 dark:text-slate-400">2025年12月20日——山东东方高校联合例会01-齐鲁幻聚即将举办。</p>
+            <p class="mt-1 text-[11px] text-slate-500 dark:text-slate-400">2025年12月20日——山东东方高校联合例会01-齐鲁幻聚圆满结束！</p>
             <dl class="mt-4 space-y-3 text-xs">
               <div class="flex justify-between">
                 <dt class="text-slate-700 dark:text-slate-300">例会交流</dt>
@@ -329,7 +329,7 @@ import { resolveImage } from './utils/image';
 import LogoLoop from '@/components/LogoLoop.vue';
 import ClickSpark from '@/components/ClickSpark.vue';
 import StarBorder from '@/components/StarBorder.vue';
-import TicketModal from '@/components/TicketModal.vue';
+//import TicketModal from '@/components/TicketModal.vue';//关闭售票功能
 
 // Async components for better performance
 const UniversityCommunity = defineAsyncComponent(() => import('./components/UniversityCommunity.vue'));
