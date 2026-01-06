@@ -9,12 +9,12 @@
     :sparkCount="8"
     :duration="400"
   >
-    <TicketModal @navigate="handleTicketNavigate" />
+    <!-- <TicketModal @navigate="handleTicketNavigate" /> -->
     <!-- 顶部导航 -->
     <header class="sticky top-0 z-20 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur transition-colors duration-300">
       <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
         <div class="flex items-center gap-3">
-          <img :src="resolveImage('/logos/sdtcsa.png')" alt="SDTCSA Logo" class="h-16 w-16 object-contain drop-shadow-md" />
+          <img :src="resolveImage('/logos/sdtcsa.webp')" alt="SDTCSA Logo" class="h-16 w-16 object-contain drop-shadow-md" />
           <div>
             <p class="text-base font-bold tracking-wide text-slate-900 dark:text-slate-100">山东东方高校联合会</p>
             <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Shandong Touhou College Union</p>
@@ -144,7 +144,7 @@
             }"
           >
             <img 
-              :src="resolveImage('/logos/sdtcsa.png')" 
+              :src="resolveImage('/logos/sdtcsa.webp')" 
               alt="SDTCSA 3D Logo" 
               class="w-full h-full object-contain drop-shadow-2xl"
             />
@@ -172,7 +172,7 @@
       </section>
 
       <!-- Logo Loop -->
-      <div class="w-full -mt-10 mb-10 overflow-hidden">
+      <div class="w-full -mt-14 -mb-10 overflow-hidden">
         <LogoLoop
           :logos="universityLogos"
           :speed="50"
@@ -325,11 +325,13 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed, defineAsyncComponent } from 'vue';
-import { resolveImage } from './utils/image';
+import { resolveImage } from '@/utils';
+import { universities } from '@/data/universities';
 import LogoLoop from '@/components/LogoLoop.vue';
 import ClickSpark from '@/components/ClickSpark.vue';
 import StarBorder from '@/components/StarBorder.vue';
-//import TicketModal from '@/components/TicketModal.vue';//关闭售票功能
+// TicketModal functionality is disabled
+// import TicketModal from '@/components/TicketModal.vue';
 
 // Async components for better performance
 const UniversityCommunity = defineAsyncComponent(() => import('./components/UniversityCommunity.vue'));
@@ -344,16 +346,6 @@ const scrollTo = (id: string) => {
   if (!el) return
   el.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
-
-const handleTicketNavigate = () => {
-  scrollTo('event');
-  // Wait for scroll to finish a bit
-  setTimeout(() => {
-    if (touhouEventsRef.value) {
-      touhouEventsRef.value.openEventById(1); // ID 1 is the December meeting
-    }
-  }, 800);
-};
 
 // Season Effect Logic
 const isSeasonEffectActive = ref(true);
@@ -402,32 +394,14 @@ onMounted(() => {
   }
 });
 
-const universityLogos = [
-  { src: resolveImage('/logos/sdu.webp'), alt: '山东大学', title: '山东大学' },
-  { src: resolveImage('/logos/sduwh.webp'), alt: '山东大学（威海）', title: '山东大学（威海）' },
-  { src: resolveImage('/logos/sdut.webp'), alt: '山东理工大学', title: '山东理工大学' },
-  { src: resolveImage('/logos/sdutcm.webp'), alt: '山东中医药大学', title: '山东中医药大学' },
-  { src: resolveImage('/logos/sdjzu.webp'), alt: '山东建筑大学', title: '山东建筑大学' },
-  { src: resolveImage('/logos/sdpei.webp'), alt: '山东体育学院', title: '山东体育学院' },
-  { src: resolveImage('/logos/sdjtu.webp'), alt: '山东交通学院', title: '山东交通学院' },
-  { src: resolveImage('/logos/sdyu.webp'), alt: '山东青年政治学院', title: '山东青年政治学院' },
-  { src: resolveImage('/logos/sdnu.webp'), alt: '山东师范大学', title: '山东师范大学' },
-  { src: resolveImage('/logos/smu.webp'), alt: '山东管理学院', title: '山东管理学院' },
-  { src: resolveImage('/logos/qlu.webp'), alt: '齐鲁工业大学', title: '齐鲁工业大学' },
-  { src: resolveImage('/logos/sdca.webp'), alt: '山东艺术学院', title: '山东艺术学院' },
-  { src: resolveImage('/logos/UPC.webp'), alt: '中国石油大学（华东）', title: '中国石油大学（华东）' },
-  { src: resolveImage('/logos/hitwith.webp'), alt: '哈尔滨工业大学（威海）', title: '哈尔滨工业大学（威海）' },
-  { src: resolveImage('/logos/sdipct.webp'), alt: '山东石油化工学院', title: '山东石油化工学院' },
-  { src: resolveImage('/logos/ujn.webp'), alt: '济南大学', title: '济南大学' },
-  { src: resolveImage('/logos/uzz.webp'), alt: '枣庄学院', title: '枣庄学院' },
-  { src: resolveImage('/logos/dykj.webp'), alt: '东营科技职业学院', title: '东营科技职业学院' },
-  { src: resolveImage('/logos/lcu.webp'), alt: '聊城大学', title: '聊城大学' },
-  { src: resolveImage('/logos/ytu.webp'), alt: '烟台大学', title: '烟台大学' },
-  { src: resolveImage('/logos/ldu.webp'), alt: '鲁东大学', title: '鲁东大学' },
-  { src: resolveImage('/logos/qiot.webp'), alt: '齐鲁理工学院', title: '齐鲁理工学院' },
-  { src: resolveImage('/logos/zvc.webp'), alt: '枣庄职业学院', title: '枣庄职业学院' },
-  { src: resolveImage('/logos/qau.webp'), alt: '青岛农业大学', title: '青岛农业大学' },
-];
+// Map universities data to the format required by LogoLoop
+const universityLogos = universities
+  .filter(uni => uni.id !== 25) // Exclude "More" placeholder
+  .map(uni => ({
+    src: resolveImage(uni.logo),
+    alt: uni.name,
+    title: uni.name
+  }));
 </script>
 
 <style scoped>

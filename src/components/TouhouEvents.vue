@@ -140,7 +140,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { resolveImage } from '@/utils/image';
+import { resolveImage } from '@/utils';
 
 interface TouhouEvent {
   id: number;

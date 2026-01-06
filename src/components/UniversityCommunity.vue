@@ -1,176 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { resolveImage } from '@/utils/image';
+import { resolveImage } from '@/utils';
+import { universities, type University } from '@/data/universities';
 
-interface ContactInfo {
-  qqGroup?: string;
-  qrCode?: string;
-  description?: string;
-}
-
-interface University {
-  id: number;
-  name: string;
-  logo: string;
-  contact: ContactInfo;
-}
-
-const universities: University[] = [
-  {
-    id: 1,
-    name: '山东大学',
-    logo: '/logos/sdu.webp',
-    contact: { qqGroup: '186295950', description: '★山东大学♪幻想浮世伊行★  \n 蓬莱清辉学海浮幻想，灵山风起浩然行世伊' }
-  },
-  {
-    id: 2,
-    name: '山东大学（威海）',
-    logo: '/logos/sduwh.webp',
-    contact: { qqGroup: '908978336', description: '崴车万同好会' }
-  },
-  {
-    id: 3,
-    name: '山东理工大学',
-    logo: '/logos/sdut.webp',
-    contact: { qqGroup: '982212088' }
-  },
-  {
-    id: 4,
-    name: '山东中医药大学',
-    logo: '/logos/sdutcm.webp',
-    contact: { qqGroup: '917763620' }
-  },
-  {
-    id: 5,
-    name: '山东建筑大学',
-    logo: '/logos/sdjzu.webp',
-    contact: { qqGroup: '579042420', description: '济南山童联合协会' }
-  },
-  {
-    id: 6,
-    name: '山东体育学院',
-    logo: '/logos/sdpei.webp',
-    contact: { qqGroup: '871721412' }
-  },
-  {
-    id: 7,
-    name: '山东交通学院',
-    logo: '/logos/sdjtu.webp',
-    contact: { qqGroup: '937924293' }
-  },
-  {
-    id: 8,
-    name: '山东青年政治学院',
-    logo: '/logos/sdyu.webp',
-    contact: { qqGroup: '659598919' }
-  },
-  {
-    id: 9,
-    name: '山东师范大学',
-    logo: '/logos/sdnu.webp',
-    contact: { qqGroup: '743070412' }
-  },
-  {
-    id: 10,
-    name: '山东管理学院',
-    logo: '/logos/smu.webp',
-    contact: { qqGroup: '1070267383' ,description:'山东管理学院东方同好会'}
-  },
-  {
-    id: 11,
-    name: '齐鲁工业大学',
-    logo: '/logos/qlu.webp',
-    contact: { qqGroup: '1021423802' }
-  },
-  {
-    id: 12,
-    name: '山东艺术学院',
-    logo: '/logos/sdca.webp',
-    contact: { qqGroup: '596762256' }
-  },
-  {
-    id: 13,
-    name: '中国石油大学（华东）',
-    logo: '/logos/UPC.webp',
-    contact: { qqGroup: '631941461' }
-  },
-  {
-    id: 14,
-    name: '哈尔滨工业大学（威海）',
-    logo: '/logos/hitwith.webp',
-    contact: { qqGroup: '196208810' ,description:'梦环翠海　～　哈尔滨工业大学（威海）东方同好会'}
-  },
-  {
-    id: 15,
-    name: '山东石油化工学院',
-    logo: '/logos/sdipct.webp',
-    contact: { qqGroup: '644182264' ,description:'曾经的石油大学胜利学院，石油大学是我们的亲爹'}
-  },
-  {
-    id: 16,
-    name: '济南大学',
-    logo: '/logos/ujn.webp',
-    contact: { qqGroup: '856370052' }
-  },
-  {
-    id: 17,
-    name: '枣庄学院',
-    logo: '/logos/uzz.webp',
-    contact: { qqGroup: '852282759' }
-  },
-  {
-    id: 18,
-    name: '东营科技职业学院',
-    logo: '/logos/dykj.webp',
-    contact: { qqGroup: '112864654' }
-  },
-  {
-    id: 19,
-    name: '聊城大学',
-    logo: '/logos/lcu.webp',
-    contact: { qqGroup: '514756242',description:"水城烟波泛古槎，\n光岳楼前绽梦家。\n星曳御柱临幽境，\n月照博丽映京华。" }
-  },
-  {
-    id: 20,
-    name: '烟台大学',
-    logo: '/logos/ytu.webp',
-    contact: { qqGroup: '1007450236' }
-  },
-   {
-    id: 21,
-    name: '鲁东大学',
-    logo: '/logos/ldu.webp',
-    contact: { qqGroup: '1071013231' }
-  },
-  {
-    id: 22,
-    name: '齐鲁理工学院',
-    logo: '/logos/qiot.webp',
-    contact: { qqGroup: '1011030824' }
-  },
-  {
-    id: 23,
-    name: '枣庄职业学院',
-    logo: '/logos/zvc.webp',
-    contact: { qqGroup: '1020621071' }
-  },
-  {
-    id: 24,
-    name: '青岛农业大学',
-    logo: '/logos/qau.webp',
-    contact: { qqGroup: '815491041' }
-  },
-  {
-    id: 25,
-    name: '添加你的学校',
-    logo: '/logos/more.webp',
-    contact: { qqGroup: '977015593', description: '请加入山高联群聊私信管理员添加' }
-  },
-
-];
 
 const selectedUniversity = ref<University | null>(null);
 const isModalOpen = ref(false);
+const loadedImages = ref<Set<number>>(new Set());
+
+const onImageLoad = (id: number) => {
+  loadedImages.value.add(id);
+};
 
 const openModal = (uni: University) => {
   selectedUniversity.value = uni;
@@ -182,28 +22,40 @@ const closeModal = () => {
 };
 
 // Physics/Hover effect logic
+let rafId: number | null = null;
+
 const handleMouseMove = (e: MouseEvent) => {
+  if (rafId) return;
+
   const target = e.currentTarget as HTMLElement;
   const rect = target.getBoundingClientRect();
   const x = e.clientX - rect.left - rect.width / 2;
   const y = e.clientY - rect.top - rect.height / 2;
   
-  // Calculate rotation
-  const rotateX = -y / 6; 
-  const rotateY = x / 6;
-  
-  // Calculate shine position
-  const shineX = 50 + (x / rect.width) * 100;
-  const shineY = 50 + (y / rect.height) * 100;
+  rafId = requestAnimationFrame(() => {
+    // Calculate rotation
+    const rotateX = -y / 6; 
+    const rotateY = x / 6;
+    
+    // Calculate shine position
+    const shineX = 50 + (x / rect.width) * 100;
+    const shineY = 50 + (y / rect.height) * 100;
 
-  // Apply CSS variables for 3D effect
-  target.style.setProperty('--rotate-x', `${rotateX}deg`);
-  target.style.setProperty('--rotate-y', `${rotateY}deg`);
-  target.style.setProperty('--shine-x', `${shineX}%`);
-  target.style.setProperty('--shine-y', `${shineY}%`);
+    // Apply CSS variables for 3D effect
+    target.style.setProperty('--rotate-x', `${rotateX}deg`);
+    target.style.setProperty('--rotate-y', `${rotateY}deg`);
+    target.style.setProperty('--shine-x', `${shineX}%`);
+    target.style.setProperty('--shine-y', `${shineY}%`);
+    
+    rafId = null;
+  });
 };
 
 const handleMouseLeave = (e: MouseEvent) => {
+  if (rafId) {
+    cancelAnimationFrame(rafId);
+    rafId = null;
+  }
   const target = e.currentTarget as HTMLElement;
   target.style.setProperty('--rotate-x', '0deg');
   target.style.setProperty('--rotate-y', '0deg');
@@ -211,19 +63,39 @@ const handleMouseLeave = (e: MouseEvent) => {
   target.style.setProperty('--shine-y', '50%');
 };
 
+const handleKeyDown = (e: KeyboardEvent, uni: University) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    // Simulate click for keyboard users
+    handleClick(e as unknown as MouseEvent, uni);
+  }
+};
+
 const handleClick = (e: MouseEvent, uni: University) => {
-  // Find the logo container to spin
+  // Find the logo container to animate
   const card = e.currentTarget as HTMLElement;
   const logo = card.querySelector('.uni-logo') as HTMLElement;
   
   if (logo) {
-    logo.classList.add('animate-spin-once');
+    // Current effect: Bounce
+    logo.classList.add('animate-click-bounce');
     
+    // Optional: Rotate effect (Uncomment below and comment out 'animate-click-bounce' line above)
+    // logo.classList.add('animate-spin-once'); 
+    
+    // Open modal quickly for better responsiveness
+    setTimeout(() => {
+      openModal(uni);
+    }, 150);
+
     // Remove class after animation to allow re-triggering
     setTimeout(() => {
-      logo.classList.remove('animate-spin-once');
-      openModal(uni);
-    }, 600);
+      // Bounce cleanup
+      logo.classList.remove('animate-click-bounce');
+      
+      // Rotate cleanup (If using rotate effect)
+      // logo.classList.remove('animate-spin-once');
+    }, 400); 
   } else {
     openModal(uni);
   }
@@ -236,21 +108,24 @@ const handleClick = (e: MouseEvent, uni: University) => {
       <h2 class="text-3xl md:text-4xl font-bold text-sky-700 dark:text-sky-400 inline-block">
         高校社群
       </h2>
-      <p class="mt-4 text-slate-500 dark:text-slate-400">目前已提供校徽和群号的社群，若想加入请单击获取详细联系方式（仅提供信息，以下大学信息与山高连无关）</p>
+      <p class="mt-4 text-slate-500 dark:text-slate-400">目前已提供校徽和群号的社群，若想加入请单击获取详细联系方式</p>
     </div>
     
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-10 px-6 max-w-7xl mx-auto">
       <div 
         v-for="uni in universities" 
         :key="uni.id"
-        class="group relative flex flex-col items-center justify-center gap-4 cursor-pointer perspective-container"
+        class="group relative flex flex-col items-center justify-center gap-4 cursor-pointer perspective-container outline-none focus-visible:ring-2 focus-visible:ring-sky-400 rounded-xl p-2"
+        role="button"
+        tabindex="0"
         @mousemove="handleMouseMove"
         @mouseleave="handleMouseLeave"
         @click="(e) => handleClick(e, uni)"
+        @keydown="(e) => handleKeyDown(e, uni)"
         style="--rotate-x: 0deg; --rotate-y: 0deg; --shine-x: 50%; --shine-y: 50%;"
       >
         <!-- 3D Card Wrapper -->
-        <div class="card-3d-wrapper transition-transform duration-100 ease-out will-change-transform relative z-10">
+        <div class="card-3d-wrapper transition-transform duration-100 ease-out will-change-transform relative z-10 w-full flex justify-center">
             <!-- Logo Container -->
             <div class="uni-logo relative w-28 h-28 md:w-32 md:h-32 rounded-full bg-white dark:bg-slate-800 transform-style-3d">
                <!-- Thickness/Depth layers -->
@@ -258,12 +133,22 @@ const handleClick = (e: MouseEvent, uni: University) => {
                <div class="absolute inset-0 rounded-full bg-slate-200 dark:bg-slate-800 translate-z-[-2px]"></div>
                
                <!-- Main Content Layer -->
-               <div class="absolute inset-0 rounded-full overflow-hidden border-4 border-slate-200 dark:border-slate-700 group-hover:border-sky-500 dark:group-hover:border-sky-400 transition-colors bg-white dark:bg-slate-800 shadow-inner">
-                             <img 
-            :src="resolveImage(uni.logo)" 
-            :alt="uni.name" 
-            class="h-full w-full object-contain p-2 transition-transform duration-500 group-hover:scale-110"
-          />
+               <div class="absolute inset-0 rounded-full overflow-hidden border-4 border-slate-200 dark:border-slate-700 group-hover:border-sky-500 dark:group-hover:border-sky-400 group-focus:border-sky-500 transition-colors bg-white dark:bg-slate-800 shadow-inner flex items-center justify-center">
+                   
+                  <!-- Image Skeleton -->
+                  <div 
+                    v-if="!loadedImages.has(uni.id)" 
+                    class="absolute inset-0 bg-slate-200 dark:bg-slate-700 animate-pulse z-20"
+                  ></div>
+
+                  <img 
+                    :src="resolveImage(uni.logo)" 
+                    :alt="uni.name" 
+                    loading="lazy"
+                    @load="onImageLoad(uni.id)"
+                    class="h-full w-full object-contain p-2 transition-transform duration-500 group-hover:scale-110"
+                    :class="{ 'opacity-0': !loadedImages.has(uni.id), 'opacity-100': loadedImages.has(uni.id) }"
+                  />
                </div>
 
                <!-- Dynamic Shine effect -->
@@ -283,21 +168,30 @@ const handleClick = (e: MouseEvent, uni: University) => {
       </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Backdrop -->
     <Transition
-      enter-active-class="transition duration-200 ease-out"
+      enter-active-class="transition-opacity duration-300 ease-out"
+      enter-from-class="opacity-0"
+      enter-to-class="opacity-100"
+      leave-active-class="transition-opacity duration-200 ease-in"
+      leave-from-class="opacity-100"
+      leave-to-class="opacity-0"
+    >
+      <div v-if="isModalOpen" class="fixed inset-0 z-[45] bg-slate-900/20 dark:bg-black/70 backdrop-blur-sm" @click="closeModal"></div>
+    </Transition>
+
+    <!-- Modal Content -->
+    <Transition
+      enter-active-class="transition duration-300 ease-out"
       enter-from-class="opacity-0 scale-95"
       enter-to-class="opacity-100 scale-100"
-      leave-active-class="transition duration-150 ease-in"
+      leave-active-class="transition duration-200 ease-in"
       leave-from-class="opacity-100 scale-100"
       leave-to-class="opacity-0 scale-95"
     >
-      <div v-if="isModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog">
-        <!-- Backdrop -->
-        <div class="absolute inset-0 bg-slate-900/20 dark:bg-black/70 backdrop-blur-sm" @click="closeModal"></div>
-        
-        <!-- Modal Content -->
-        <div class="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 max-w-md w-full shadow-2xl shadow-slate-200/50 dark:shadow-sky-500/10 overflow-hidden transition-colors duration-300">
+      <div v-if="isModalOpen" class="fixed inset-0 z-[50] flex items-center justify-center p-4 pointer-events-none">
+        <!-- Modal Card (pointer-events-auto to capture clicks) -->
+        <div class="pointer-events-auto relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 max-w-md w-full shadow-2xl shadow-slate-200/50 dark:shadow-sky-500/10 overflow-hidden transition-colors duration-300">
           <!-- Decorative background -->
           <div class="absolute top-0 left-0 w-full h-24 bg-sky-50 dark:bg-sky-900/20"></div>
           
@@ -387,6 +281,19 @@ const handleClick = (e: MouseEvent, uni: University) => {
     0 0 0 1px rgba(56, 189, 248, 0.3);
 }
 
+.animate-click-bounce {
+  animation: click-bounce 0.4s ease-in-out;
+}
+
+@keyframes click-bounce {
+  0% { transform: scale(1); }
+  40% { transform: scale(0.85); }
+  60% { transform: scale(1.08); }
+  80% { transform: scale(0.96); }
+  100% { transform: scale(1); }
+}
+
+/* Optional: Rotate animation (Old effect)
 .animate-spin-once {
   animation: spin-once 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -394,5 +301,12 @@ const handleClick = (e: MouseEvent, uni: University) => {
 @keyframes spin-once {
   0% { transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) rotate(0deg); }
   100% { transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) rotate(360deg); }
+}
+*/
+
+@media (hover: none) {
+  .card-3d-wrapper {
+    transform: none !important;
+  }
 }
 </style>

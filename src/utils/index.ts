@@ -1,6 +1,15 @@
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+/**
+ * Merge tailwind classes
+ */
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
 // 图片加载优化工具
 // 使用 jsDelivr CDN 加速 GitHub Pages 上的静态资源
-
 const CDN_PREFIX = 'https://cdn.jsdelivr.net/gh/SDTCU/SDTCU.github.io@gh-pages';
 
 /**
@@ -15,18 +24,14 @@ export const resolveImage = (path: string): string => {
     return path;
   }
 
-  // 尝试使用 WebP (简单地替换扩展名)
-  // 注意：这需要确保对应的 WebP 文件确实存在
-  // 我们将在构建脚本中生成这些 WebP 文件
-  const webpPath = path.replace(/\.(png|jpg|jpeg)$/i, '.webp');
-
-  // 开发环境使用本地文件
+  // 开发环境或 SSR (这里假设是客户端渲染，简单判断)
+  // 如果需要更严格的环境判断，可以使用 import.meta.env.DEV
   if (import.meta.env.DEV) {
-    return webpPath;
+    return path;
   }
 
-  // 生产环境使用 CDN
-  // 移除开头的 / 以避免双重斜杠
-  const cleanPath = webpPath.startsWith('/') ? webpPath.slice(1) : webpPath;
+  // 生产环境：使用 jsDelivr
+  // 移除开头的斜杠以拼接
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
   return `${CDN_PREFIX}/${cleanPath}`;
 };
