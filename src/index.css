@@ -67,16 +67,24 @@
   }
 }
 @layer components {
-  .c-nav-header {
-    font-weight: bold;
-    transition: all 0.5s ease-in-out;
-    -webkit-transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
+  /* Increase specificity to reduce accidental overrides; limit transition to affected properties and respect reduced-motion */
+  .c-nav-header.c-nav-header {
+    font-weight: 700;
+    transition: transform 0.5s ease-in-out, text-shadow 0.5s ease-in-out;
   }
 
-  .c-nav-header:hover {
+  .c-nav-header.c-nav-header:hover {
     transform: translateY(-2px);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c-nav-header.c-nav-header {
+      transition: none;
+    }
+    .c-nav-header.c-nav-header:hover {
+      transform: none;
+    }
+  }
 }
+
