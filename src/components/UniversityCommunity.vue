@@ -86,7 +86,7 @@ const handleClick = (e: MouseEvent, uni: University) => {
     // Open modal quickly for better responsiveness
     setTimeout(() => {
       openModal(uni);
-    }, 150);
+    }, 300);
 
     // Remove class after animation to allow re-triggering
     setTimeout(() => {
