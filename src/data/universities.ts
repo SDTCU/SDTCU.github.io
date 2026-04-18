@@ -39,7 +39,7 @@ export const universities: University[] = [
   {
     id: 5,
     name: '山东医药大学',
-    logo: '/logos/sum.webp',
+    logo: '/logos/smpu.webp',
     contact: { qqGroup: '1030282692' }
   },
   {
