@@ -170,8 +170,15 @@ export const universities: University[] = [
   },
   {
     id: 27,
+    name: '曲阜师范大学',
+    logo: '/logos/qfnu.webp',
+    contact: { qqGroup: '1093503512' }
+  },
+  {
+    id: 28,
     name: '添加你的学校',
     logo: '/logos/more.webp',
     contact: { qqGroup: '977015593', description: '请加入山高联群聊私信管理员添加' }
   },
 ];
+//
