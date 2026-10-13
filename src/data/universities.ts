@@ -181,3 +181,4 @@ export const universities: University[] = [
     contact: { qqGroup: '977015593', description: '请加入山高联群聊私信管理员添加' }
   },
 ];
+//
