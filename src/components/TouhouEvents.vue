@@ -139,42 +139,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onUnmounted } from 'vue';
 import { resolveImage } from '@/utils';
-
-interface TouhouEvent {
-  id: number;
-  title: string;
-  date: string;
-  location: string;
-  status: '筹备中' | '售票中' | '进行中' | '已结束' | '待定';
-  image: string;
-  description: string;
-  link?: string;
-}
+import { events, type TouhouEvent } from '@/data/events';
 
 const isExpanded = ref(false);
 
-const events = ref<TouhouEvent[]>([
-  // 已宣发/定档
-  {
-    id: 1,
-    title: '山东东方高校联合例会01-齐鲁幻聚',
-    date: '2025年12月20日',
-    location: '济南',
-    status: '已结束',
-    image: '/posters/qlhj.webp',
-    description: '山东东方高校联合会12月例会。\n群聊：977015593 \n 活动视频：\n东方赛马：https://www.bilibili.com/video/BV1jhB7BzEoo/\n[自由舞台]月兔DJ：https://www.bilibili.com/video/BV184BEBwEVK',
-    link: 'https://touhou.market/main/events/320'
-  }
-]);
-
 const visibleEvents = computed(() => {
   if (isExpanded.value) {
-    return events.value;
+    return events;
   }
   // Show first 6 events by default (assuming they are sorted by date)
-  return events.value.slice(0, 6);
+  return events.slice(0, 6);
 });
 
 const selectedEvent = ref<TouhouEvent | null>(null);
@@ -188,6 +164,10 @@ const closeEvent = () => {
   selectedEvent.value = null;
   document.body.style.overflow = '';
 };
+
+onUnmounted(() => {
+  document.body.style.overflow = '';
+});
 
 const getStatusClass = (status: string) => {
   switch (status) {
@@ -210,7 +190,7 @@ const openLink = (url: string) => {
 
 // Expose method for parent component
 const openEventById = (id: number) => {
-  const event = events.value.find(e => e.id === id);
+  const event = events.find(e => e.id === id);
   if (event) {
     openEvent(event);
   }

@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import { resolveImage } from '@/utils';
 import { universities, type University } from '@/data/universities';
 
+const visibleUniversities = universities.filter((uni) => !uni.isPlaceholder);
 
 const selectedUniversity = ref<University | null>(null);
 const isModalOpen = ref(false);
@@ -113,7 +114,7 @@ const handleClick = (e: MouseEvent, uni: University) => {
     
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-10 px-6 max-w-7xl mx-auto">
       <div 
-        v-for="uni in universities" 
+        v-for="uni in visibleUniversities"
         :key="uni.id"
         class="group relative flex flex-col items-center justify-center gap-4 cursor-pointer perspective-container outline-none focus-visible:ring-2 focus-visible:ring-sky-400 rounded-xl p-2"
         role="button"
@@ -144,6 +145,8 @@ const handleClick = (e: MouseEvent, uni: University) => {
                   <img 
                     :src="resolveImage(uni.logo)" 
                     :alt="uni.name" 
+                    width="128"
+                    height="128"
                     loading="lazy"
                     @load="onImageLoad(uni.id)"
                     class="h-full w-full object-contain p-2 transition-transform duration-500 group-hover:scale-110"

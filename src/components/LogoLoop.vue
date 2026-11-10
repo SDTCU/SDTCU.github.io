@@ -182,21 +182,22 @@ const animate = (timestamp: number) => {
     trackRef.value.style.transform = transformValue;
   }
 
-  rafRef.value = requestAnimationFrame(animate);
+  rafRef.value = isVisible && !isReducedMotion ? requestAnimationFrame(animate) : null;
 };
 
 const rafRef = ref<number | null>(null);
+let resizeObserver: ResizeObserver | null = null;
+let visibilityObserver: IntersectionObserver | null = null;
+let isVisible = true;
+let isReducedMotion = false;
 
 // Lifecycle
 onMounted(() => {
   // Resize Observer
   if (containerRef.value && seqRef.value) {
-    const ro = new ResizeObserver(updateDimensions);
-    ro.observe(containerRef.value);
-    ro.observe(seqRef.value);
-    
-    // Cleanup RO
-    onUnmounted(() => ro.disconnect());
+    resizeObserver = new ResizeObserver(updateDimensions);
+    resizeObserver.observe(containerRef.value);
+    resizeObserver.observe(seqRef.value);
   }
 
   // Image Loading
@@ -243,14 +244,25 @@ onMounted(() => {
   updateDimensions(); // Immediate update
   checkImages();
   
-  // Start Animation
-  rafRef.value = requestAnimationFrame(animate);
+  isReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+  visibilityObserver = new IntersectionObserver(([entry]) => {
+    isVisible = entry.isIntersecting;
+    if (isVisible && !isReducedMotion && rafRef.value === null) {
+      lastTimestamp.value = null;
+      rafRef.value = requestAnimationFrame(animate);
+    }
+  }, { threshold: 0.01 });
+  if (containerRef.value) visibilityObserver.observe(containerRef.value);
+  if (!isReducedMotion) rafRef.value = requestAnimationFrame(animate);
 });
 
 onUnmounted(() => {
   if (rafRef.value !== null) {
     cancelAnimationFrame(rafRef.value);
+    rafRef.value = null;
   }
+  resizeObserver?.disconnect();
+  visibilityObserver?.disconnect();
 });
 
 // Watchers
@@ -342,7 +354,7 @@ watch(() => [props.logos, props.gap, props.logoHeight, props.direction], () => {
                 :height="item.height"
                 :alt="item.alt ?? ''"
                 :title="item.title"
-                loading="eager"
+                loading="lazy"
                 decoding="async"
                 draggable="false"
                 :class="[
@@ -350,7 +362,7 @@ watch(() => [props.logos, props.gap, props.logoHeight, props.direction], () => {
                   '[-webkit-user-drag:none] pointer-events-none',
                   '[image-rendering:-webkit-optimize-contrast]',
                   'motion-reduce:transition-none',
-                  scaleOnHover && 'transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-120'
+                  scaleOnHover && 'transition-transform duration-300 ease-in-out group-hover/item:scale-120'
                 ]"
               />
             </a>
@@ -363,7 +375,7 @@ watch(() => [props.logos, props.gap, props.logoHeight, props.direction], () => {
               :height="item.height"
               :alt="item.alt ?? ''"
               :title="item.title"
-              loading="eager"
+              loading="lazy"
               decoding="async"
               draggable="false"
               :class="[
@@ -371,7 +383,7 @@ watch(() => [props.logos, props.gap, props.logoHeight, props.direction], () => {
                 '[-webkit-user-drag:none] pointer-events-none',
                 '[image-rendering:-webkit-optimize-contrast]',
                 'motion-reduce:transition-none',
-                scaleOnHover && 'transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-120'
+                scaleOnHover && 'transition-transform duration-300 ease-in-out group-hover/item:scale-120'
               ]"
             />
           </slot>

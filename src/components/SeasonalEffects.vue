@@ -9,6 +9,9 @@ const canvasRef = ref<HTMLCanvasElement | null>(null);
 let ctx: CanvasRenderingContext2D | null = null;
 let animationFrameId: number;
 let particles: Particle[] = [];
+let visibilityObserver: IntersectionObserver | null = null;
+let isVisible = true;
+let isReducedMotion = false;
 
 // Season configuration
 type Season = 'spring' | 'summer' | 'autumn' | 'winter';
@@ -116,7 +119,7 @@ const initParticles = () => {
 };
 
 const animate = () => {
-  if (!canvasRef.value || !ctx) return;
+  if (!canvasRef.value || !ctx || !isVisible || isReducedMotion) return;
   const w = canvasRef.value.width;
   const h = canvasRef.value.height;
   
@@ -140,6 +143,7 @@ const handleResize = () => {
 };
 
 onMounted(() => {
+  isReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
   currentSeason.value = getSeason();
   if (canvasRef.value) {
     ctx = canvasRef.value.getContext('2d');
@@ -148,21 +152,27 @@ onMounted(() => {
     
     if (props.active) {
       initParticles();
-      animate();
+      if (!isReducedMotion) animate();
     }
   }
   window.addEventListener('resize', handleResize);
+  visibilityObserver = new IntersectionObserver(([entry]) => {
+    isVisible = entry.isIntersecting;
+    if (isVisible && props.active && !isReducedMotion && !animationFrameId) animate();
+  }, { threshold: 0.01 });
+  visibilityObserver.observe(canvasRef.value);
 });
 
 onUnmounted(() => {
   cancelAnimationFrame(animationFrameId);
+  visibilityObserver?.disconnect();
   window.removeEventListener('resize', handleResize);
 });
 
 watch(() => props.active, (newVal) => {
   if (newVal) {
     initParticles();
-    animate();
+    if (!isReducedMotion && isVisible) animate();
   } else {
     cancelAnimationFrame(animationFrameId);
     if (ctx && canvasRef.value) {

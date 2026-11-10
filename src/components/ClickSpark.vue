@@ -34,6 +34,8 @@ const canvasRef = ref<HTMLCanvasElement | null>(null);
 const rootRef = ref<HTMLDivElement | null>(null);
 let sparks: Spark[] = [];
 let animationId: number | null = null;
+let resizeObserver: ResizeObserver | null = null;
+let isReducedMotion = false;
 
 const easeFunc = (t: number) => {
   switch (props.easing) {
@@ -83,7 +85,7 @@ const draw = (timestamp: number) => {
     return true;
   });
 
-  animationId = requestAnimationFrame(draw);
+  animationId = sparks.length > 0 ? requestAnimationFrame(draw) : null;
 };
 
 const handleClick = (e: MouseEvent) => {
@@ -93,6 +95,7 @@ const handleClick = (e: MouseEvent) => {
 
   const canvas = canvasRef.value;
   if (!canvas) return;
+  if (isReducedMotion) return;
   
   const rect = canvas.getBoundingClientRect();
   const x = e.clientX - rect.left;
@@ -107,6 +110,7 @@ const handleClick = (e: MouseEvent) => {
   }));
 
   sparks.push(...newSparks);
+  if (animationId === null) animationId = requestAnimationFrame(draw);
 };
 
 onMounted(() => {
@@ -114,26 +118,27 @@ onMounted(() => {
   const root = rootRef.value;
   
   if (canvas && root) {
+    isReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
     const resizeCanvas = () => {
       const { width, height } = root.getBoundingClientRect();
       canvas.width = width;
       canvas.height = height;
     };
     
-    const ro = new ResizeObserver(() => {
+    resizeObserver = new ResizeObserver(() => {
         // Small delay to ensure layout is stable
         setTimeout(resizeCanvas, 100);
     });
-    ro.observe(root);
+    resizeObserver.observe(root);
     
     resizeCanvas();
     
-    animationId = requestAnimationFrame(draw);
   }
 });
 
 onUnmounted(() => {
   if (animationId) cancelAnimationFrame(animationId);
+  resizeObserver?.disconnect();
 });
 </script>
 

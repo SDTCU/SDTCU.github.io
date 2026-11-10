@@ -14,7 +14,7 @@
     <header class="sticky top-0 z-20 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur transition-colors duration-300">
       <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
         <div class="flex items-center gap-3">
-          <img :src="resolveImage('/logos/sdtcsa.webp')" alt="SDTCSA Logo" class="h-16 w-16 object-contain drop-shadow-md" />
+          <img :src="resolveImage('/logos/sdtcsa.webp')" alt="SDTCSA Logo" width="64" height="64" fetchpriority="high" class="h-16 w-16 object-contain drop-shadow-md" />
           <div>
             <p class="text-base font-bold tracking-wide text-slate-900 dark:text-slate-100">山东东方高校联合会</p>
             <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Shandong Touhou College Union</p>
@@ -58,27 +58,13 @@
       >
         <!-- Dynamic Background -->
         <div class="absolute inset-0 -z-10 pointer-events-none overflow-hidden rounded-3xl">
-            <!-- Red Glow -->
-            <div 
-                class="absolute w-[500px] h-[500px] rounded-full bg-red-500/20 dark:bg-red-500/20 blur-[80px] transition-transform duration-100 ease-out will-change-transform"
-                :style="{ transform: `translate(${mouseX - 250}px, ${mouseY - 250}px)` }"
-            ></div>
-             <!-- Yellow Glow -->
-             <div 
-                class="absolute w-[400px] h-[400px] rounded-full bg-amber-400/20 dark:bg-amber-400/20 blur-[70px] transition-transform duration-200 ease-out will-change-transform"
-                :style="{ transform: `translate(${mouseX * 0.9 - 200}px, ${mouseY * 0.9 - 200}px)` }"
-            ></div>
-             <!-- White Glow -->
-             <div 
-                class="absolute w-[300px] h-[300px] rounded-full bg-slate-300/30 dark:bg-white/10 blur-[60px] transition-transform duration-300 ease-out will-change-transform"
-                :style="{ transform: `translate(${mouseX * 0.7 + 50}px, ${mouseY * 0.7 + 50}px)` }"
-            ></div>
+          <HeroParticles />
         </div>
 
         <div class="relative z-10">
           <p class="inline-flex items-center gap-1 rounded-full border border-sky-200 dark:border-sky-500/40 bg-sky-50 dark:bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-700 dark:text-sky-300">
             <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
-            山东东方高校联合例会01-齐鲁幻聚圆满结束！
+            山东东方高校联合例会-齐鲁幻聚02 In 青岛！敬请期待！
           </p>
           <h1 class="mt-4 text-5xl font-semibold leading-tight tracking-tight text-slate-900 dark:text-slate-50 md:text-6xl">
             梦入 <span class="text-red-600 dark:text-red-400">幻想</span><br>
@@ -143,16 +129,19 @@
               transform: `perspective(1000px) rotateX(${heroRotateX}deg) rotateY(${heroRotateY}deg)` 
             }"
           >
-            <img 
+              <img
               :src="resolveImage('/logos/sdtcsa.webp')" 
               alt="SDTCSA 3D Logo" 
+                width="320"
+                height="320"
+                fetchpriority="high"
               class="w-full h-full object-contain drop-shadow-2xl"
             />
           </div>
 
           <aside class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm p-4 shadow-xl shadow-slate-200/50 dark:shadow-sky-900/40 transition-colors duration-300">
             <h2 class="text-sm font-semibold text-slate-900 dark:text-slate-100">近期活动预告</h2>
-            <p class="mt-1 text-[11px] text-slate-500 dark:text-slate-400">2025年12月20日——山东东方高校联合例会01-齐鲁幻聚圆满结束！</p>
+            <p class="mt-1 text-[11px] text-slate-500 dark:text-slate-400">2027年1月1日——山东东方高校联合例会-齐鲁幻聚02 In 青岛！敬请期待！</p>
             <dl class="mt-4 space-y-3 text-xs">
               <div class="flex justify-between">
                 <dt class="text-slate-700 dark:text-slate-300">例会交流</dt>
@@ -209,23 +198,9 @@
       <section id="features" class="space-y-5">
         <h2 class="text-xl font-semibold text-slate-900 dark:text-slate-50">活动与特色</h2>
         <div class="grid gap-4 md:grid-cols-3">
-          <article class="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 p-4 text-xs shadow-sm dark:shadow-none transition-colors duration-300">
-            <h3 class="font-semibold text-slate-900 dark:text-slate-100">校际联动</h3>
-            <p class="mt-2 text-slate-600 dark:text-slate-300">
-              打破校园围墙，组织跨校联谊、互访交流，让不同学校的东方众紧密联系在一起。
-            </p>
-          </article>
-          <article class="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 p-4 text-xs shadow-sm dark:shadow-none transition-colors duration-300">
-            <h3 class="font-semibold text-slate-900 dark:text-slate-100">发展社群</h3>
-            <p class="mt-2 text-slate-600 dark:text-slate-300">
-              努力发展东方project在高校中的传播，让更多朋友喜欢东方project。
-            </p>
-          </article>
-          <article class="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 p-4 text-xs shadow-sm dark:shadow-none transition-colors duration-300">
-            <h3 class="font-semibold text-slate-900 dark:text-slate-100">资源共享</h3>
-            <p class="mt-2 text-slate-600 dark:text-slate-300">
-              共享活动经验、展会信息、制作教程等资源，帮助各高校社群更好地发展与建设。
-            </p>
+          <article v-for="feature in featureCards" :key="feature.title" class="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/70 p-4 text-xs shadow-sm dark:shadow-none transition-colors duration-300">
+            <h3 class="font-semibold text-slate-900 dark:text-slate-100">{{ feature.title }}</h3>
+            <p class="mt-2 text-slate-600 dark:text-slate-300">{{ feature.description }}</p>
           </article>
         </div>
       </section>
@@ -253,7 +228,7 @@
              <div class="relative group">
                 <div class="absolute -inset-1 bg-gradient-to-r from-pink-500 to-violet-500 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-200"></div>
                 <div class="relative h-48 w-48 bg-white rounded-xl flex items-center justify-center p-2">
-                   <img :src="resolveImage('/logos/qqgroup.webp')" alt="QQ Group QR" class="w-full h-full object-contain" />
+                   <img :src="resolveImage('/logos/qqgroup.webp')" alt="QQ Group QR" width="192" height="192" loading="lazy" decoding="async" class="w-full h-full object-contain" />
                 </div>
              </div>
 
@@ -324,12 +299,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed, defineAsyncComponent } from 'vue';
+import { ref, onUnmounted, computed, defineAsyncComponent } from 'vue';
 import { resolveImage } from '@/utils';
 import { universities } from '@/data/universities';
 import LogoLoop from '@/components/LogoLoop.vue';
 import ClickSpark from '@/components/ClickSpark.vue';
 import StarBorder from '@/components/StarBorder.vue';
+import HeroParticles from '@/components/HeroParticles.vue';
 // TicketModal functionality is disabled
 // import TicketModal from '@/components/TicketModal.vue';
 
@@ -351,6 +327,11 @@ const scrollTo = (id: string) => {
 const isSeasonEffectActive = ref(true);
 const seasonalEffectsRef = ref<InstanceType<typeof SeasonalEffects> | null>(null);
 const showUnderConstruction = ref(false);//施工中弹窗，true为开
+const featureCards = [
+  { title: '校际联动', description: '打破校园围墙，组织跨校联谊、互访交流，让不同学校的东方众紧密联系在一起。' },
+  { title: '发展社群', description: '努力发展东方project在高校中的传播，让更多朋友喜欢东方project。' },
+  { title: '资源共享', description: '共享活动经验、展会信息、制作教程等资源，帮助各高校社群更好地发展与建设。' }
+];
 
 const currentSeason = computed(() => {
     return seasonalEffectsRef.value?.currentSeason || 'spring';
@@ -362,8 +343,6 @@ const toggleSeasonEffect = () => {
 
 // Hero background effect
 const heroRef = ref<HTMLElement | null>(null);
-const mouseX = ref(0);
-const mouseY = ref(0);
 const heroRotateX = ref(0);
 const heroRotateY = ref(0);
 
@@ -373,9 +352,6 @@ const handleHeroMouseMove = (e: MouseEvent) => {
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
   
-  mouseX.value = x;
-  mouseY.value = y;
-
   // Calculate rotation based on center of hero section
   const centerX = rect.width / 2;
   const centerY = rect.height / 2;
@@ -385,18 +361,9 @@ const handleHeroMouseMove = (e: MouseEvent) => {
   heroRotateX.value = -((y - centerY) / centerY) * 15;
 };
 
-onMounted(() => {
-  // Initialize glow at the center
-  if (heroRef.value) {
-    const rect = heroRef.value.getBoundingClientRect();
-    mouseX.value = rect.width / 2;
-    mouseY.value = rect.height / 2;
-  }
-});
-
 // Map universities data to the format required by LogoLoop
 const universityLogos = universities
-  .filter(uni => uni.id !== 25) // Exclude "More" placeholder
+  .filter(uni => !uni.isPlaceholder)
   .map(uni => ({
     src: resolveImage(uni.logo),
     alt: uni.name,

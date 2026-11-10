@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host 127.0.0.1",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview --host 127.0.0.1",
+    "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "ogl": "^1.0.11",
     "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7",
     "vue": "^3.3.4"
@@ -17,6 +19,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
     "autoprefixer": "^10.4.0",
+    "baseline-browser-mapping": "^2.11.35",
     "postcss": "^8.4.0",
     "sharp": "^0.34.5",
     "tailwindcss": "^3.3.0",

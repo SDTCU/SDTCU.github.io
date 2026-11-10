@@ -9,6 +9,7 @@ export interface University {
   name: string;
   logo: string;
   contact: ContactInfo;
+  isPlaceholder?: boolean;
 }
 
 export const universities: University[] = [
@@ -176,9 +177,16 @@ export const universities: University[] = [
   },
   {
     id: 28,
+    name: '山东科技职业大学',
+    logo: '/logos/sdvcst.webp',
+    contact: { qqGroup: '971768652'}
+  },
+  {
+    id: 29,
     name: '添加你的学校',
     logo: '/logos/more.webp',
-    contact: { qqGroup: '977015593', description: '请加入山高联群聊私信管理员添加' }
+    contact: { qqGroup: '977015593', description: '请加入山高联群聊私信管理员添加' },
+    isPlaceholder: true
   },
 ];
 //

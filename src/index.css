@@ -64,6 +64,26 @@
   }
   body {
     @apply bg-background text-foreground;
+    min-width: 320px;
+    background-image: radial-gradient(circle at 15% 0%, rgb(239 68 68 / 0.06), transparent 32rem), radial-gradient(circle at 85% 12%, rgb(14 165 233 / 0.08), transparent 30rem);
+    background-attachment: fixed;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background: rgb(239 68 68 / 0.2);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 @layer components {
